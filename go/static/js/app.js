@@ -52,5 +52,5 @@ var GoApp = angular.module('Go',
 
 .run(['$state', function ($state) {
   //go here initially
-  $state.transitionTo('menu.home'); 
+  $state.transitionTo('menu.redirects'); 
 }]);

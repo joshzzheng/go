@@ -24,7 +24,7 @@ def add_url(name, path):
   if not path.startswith("http://"):
     path = "http://" + path
   new = Redirects(name, path)
-  current = Redirects.query.filter_by(name=name).one()
+  current = Redirects.query.filter_by(name=name).first()
   if current:
     current.url = path
   else:
@@ -34,7 +34,7 @@ def add_url(name, path):
 
 @app.route('/<name>', methods=['GET'])
 def get_url(name):
-  rd = Redirects.query.filter_by(name=name).one()
+  rd = Redirects.query.filter_by(name=name).first()
   if rd:
     rd.num_visits = rd.num_visits + 1
     if not rd.url.startswith("http://"):
