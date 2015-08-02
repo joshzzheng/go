@@ -6,7 +6,6 @@ GoApp
   var redirectPromise = Restangular.all('redirects')
 
   redirectPromise.getList({'results_per_page': 100}).then(function(redirects) {
-    console.log(redirects)
     $scope.redirects = redirects;
   });
 })

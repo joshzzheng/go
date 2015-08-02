@@ -7,31 +7,34 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 from go import app
 
-from go.core import api_manager
+from go.core import api_manager, db
 from go.models import Redirects
 
 for model_name in app.config['API_MODELS']:
   model_class = app.config['API_MODELS'][model_name]
   api_manager.create_api(model_class, methods=['GET', 'POST', 'PUT', 'DELETE'])
 
-session = api_manager.session
-db = SQLAlchemy(app)
-
 # routing for basic pages (pass routing onto the Angular app)
 @app.route('/')
 def index(**kwargs):
   return make_response(open('go/templates/index.html').read())
 
-@app.route('/a/<name>/<url>')
-def add_url(name, url):
-  print name + ":" + url
+@app.route('/a/<name>/<path:path>')
+def add_url(name, path):
+  if not path.startswith("http://"):
+    path = "http://" + rd.url
+  rd = Redirects(name, path)
+  db.session.add(rd)
+  db.session.commit()
+  return redirect(url_for('index'), code=302)
 
 @app.route('/<name>', methods=['GET'])
 def get_url(name):
   rd = Redirects.query.filter_by(name=name).one()
   if rd is not None:
     rd.num_visits = rd.num_visits + 1
-    rd.name = "CHANGED"
+    if not rd.url.startswith("http://"):
+      rd.url = "http://" + rd.url
     db.session.commit()
     return redirect(rd.url, code=302)
   return redirect(url_for('index'), code=302)

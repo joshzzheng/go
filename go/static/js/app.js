@@ -14,6 +14,11 @@ var GoApp = angular.module('Go',
         templateUrl: 'static/partials/menu.html'
       })
 
+      .state('menu.home', {
+        url: '/home',
+        templateUrl: 'static/partials/home.html',
+      })
+
       .state('menu.redirects', {
         url: '/redirects',
         templateUrl: 'static/partials/redirect-list.html',
@@ -47,5 +52,5 @@ var GoApp = angular.module('Go',
 
 .run(['$state', function ($state) {
   //go here initially
-  $state.transitionTo('menu.redirects'); 
+  $state.transitionTo('menu.home'); 
 }]);
