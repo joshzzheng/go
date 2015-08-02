@@ -22,7 +22,7 @@ def index(**kwargs):
 @app.route('/a/<name>/<path:path>')
 def add_url(name, path):
   if not path.startswith("http://"):
-    path = "http://" + rd.url
+    path = "http://" + path
   rd = Redirects(name, path)
   db.session.add(rd)
   db.session.commit()

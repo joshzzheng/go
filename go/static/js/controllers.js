@@ -23,7 +23,7 @@ GoApp
         $scope.message = "Successfully added";
         $scope.login_state = 'success';
         $timeout(function() {
-          $state.go('menu.r')
+          $state.go('menu.redirects')
         }, 800);
       }, function(error) {
         if(error.data.message === "IntegrityError") {
