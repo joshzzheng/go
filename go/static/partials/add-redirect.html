@@ -1,0 +1,40 @@
+<div id="messages" class="alert alert-success" ng-show="message">{{ message }}</div>
+<form name="addRedirectForm" ng-submit="addRedirect()" novalidate>
+  <div class="form-group"
+       ng-class="{ 'has-error' : addRedirectForm.name.$invalid && 
+                                 !addRedirectForm.name.$pristine }">
+    <label> name: </label>
+    <input type="text" 
+           class="form-control input-lg" 
+           name="name"
+           ng-model="redirect.name"
+           placeholder="dota"
+           required>
+    <p ng-show="addRedirectForm.name.$invalid && 
+               !addRedirectForm.name.$pristine" class="help-block">
+      A name is required.
+    </p>
+    <br>
+  </div>
+  <div class="form-group"
+     ng-class="{ 'has-error' : addRedirectForm.name.$invalid && 
+                               !addRedirectForm.name.$pristine }">
+    <label> url: </label>
+    <input type="url" 
+           class="form-control input-md" 
+           ng-model="redirect.url"
+           placeholder="http://www.reddit.com/r/dota2"
+           required>
+      <p ng-show="addRedirectForm.name.$invalid && 
+               !addRedirectForm.name.$pristine" class="help-block">
+      A valid URL is required.
+    </p>
+  </div>
+  <hr>
+  <button id="add-redirect-button"
+        type="submit" 
+        class="btn btn-primary btn-lg" 
+        ng-disabled="addRedirectForm.$invalid">
+    Add Redirect
+  </button> 
+</form>

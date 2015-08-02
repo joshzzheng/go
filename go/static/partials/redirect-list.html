@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <thead style="font-size:16px;font-weight:800">
+    <td width="20%"> Name: </td>
+    <td width="45%"> URL: </td>
+    <td width="20%"> Create Time: </td>
+    <td width="15%"> Number of Visits: </td>
+  </thead>
+  <tbody style="font-weight:500;color:#108E7E">
+    <tr ng-repeat="redirect in redirects|orderBy:'created_time'" 
+    	ui-sref="menu.redirect-detail({redirectId: redirect.id})">
+      <td>{{redirect.name}}</td>
+      <td><div class="limited-height">{{redirect.url}}</div></td>
+      <td><div class="limited-height">{{redirect.created_time|date: 'short'}}<div></td>
+      <td>{{redirect.num_visits}}</td>
+    </tr>
+  </tbody>
+</table>

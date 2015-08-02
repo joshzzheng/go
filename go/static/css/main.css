@@ -1,0 +1,37 @@
+.navbar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.menu {
+  background-color:#3D3544;
+}
+
+#home-button {
+  color: white;
+  font-size: 21px;
+}
+
+#menu-button {
+  font-size: 18px;
+  color: white;
+}
+
+#menu-button:hover {
+  color: #E0684B;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd):hover {
+  background-color: #E8E6E5;
+  cursor: pointer;
+}
+
+.table-striped > tbody > tr:nth-of-type(even):hover {
+  background-color: #E8E6E5;
+  cursor: pointer;
+}
+
+.limited-height{
+    height: 30px;
+    overflow: hidden
+}

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid menu">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" 
+                data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="home-button" class="navbar-brand" ui-sref="menu.redirects">GO</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li> <a id="menu-button" ui-sref="menu.redirects">list</a></li>
+          <li> <a id="menu-button" ui-sref="menu.add">add</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </div>
+</div>
+
+<div class="container" ui-view></div>
