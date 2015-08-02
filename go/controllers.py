@@ -19,19 +19,23 @@ for model_name in app.config['API_MODELS']:
 def index(**kwargs):
   return make_response(open('go/templates/index.html').read())
 
-@app.route('/a/<name>/<path:path>')
+@app.route('/<name>/<path:path>')
 def add_url(name, path):
   if not path.startswith("http://"):
     path = "http://" + path
-  rd = Redirects(name, path)
-  db.session.add(rd)
+  new = Redirects(name, path)
+  current = Redirects.query.filter_by(name=name).one()
+  if current:
+    current.url = path
+  else:
+    db.session.add(new)
   db.session.commit()
   return redirect(url_for('index'), code=302)
 
 @app.route('/<name>', methods=['GET'])
 def get_url(name):
   rd = Redirects.query.filter_by(name=name).one()
-  if rd is not None:
+  if rd:
     rd.num_visits = rd.num_visits + 1
     if not rd.url.startswith("http://"):
       rd.url = "http://" + rd.url
