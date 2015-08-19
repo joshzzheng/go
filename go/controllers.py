@@ -21,7 +21,7 @@ def index(**kwargs):
 
 @app.route('/<name>/<path:path>')
 def add_url(name, path):
-  if not path.startswith("http://"):
+  if not path.startswith(("http://", "https://")):
     path = "http://" + path
   new = Redirects(name, path)
   current = Redirects.query.filter_by(name=name).first()
